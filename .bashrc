@@ -11,7 +11,7 @@ export server='cai@plse.informatik.uni-marburg.de'
 alias rmsm="rm -rf a.out.dSYM"
 alias sshgw="ssh $gw"
 alias sc=". $HOME/bin/sc"
-. "$HOME/bin/resetsc" # sets env-var $SCDIR
+#. "$HOME/bin/resetsc" # sets env-var $SCDIR
 alias resetsc=". $HOME/bin/resetsc"
 alias setsc=". $HOME/bin/setsc"
 alias refresh="cd / && cd -"
