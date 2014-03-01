@@ -3,5 +3,5 @@ if [ "$*" = '' ]
 then
   cd "$SCDIR" && ls
 else
-  cd "$SCDIR/"*$**
+  cd "$($HOME/bin/sc.rb $SCDIR $*)"
 fi

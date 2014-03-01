@@ -28,6 +28,10 @@
  fill-column 65
 )
 
+;; no toolbar, need bigger font, not sure how
+(if (boundp 'tool-bar-mode) (tool-bar-mode 0))
+;(set-default-font "-apple-bitstream vera sans mono-medium-r-normal--0-0-0-0-m-0-mac-roman")
+
 ;; my own key bindings
 (global-set-key (kbd "C-=") 'fill-region)
 (global-set-key (kbd "C-<tab>") (lambda () (interactive) (insert-char 9 1)))
