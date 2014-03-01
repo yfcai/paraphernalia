@@ -1,1 +1,3 @@
-/Users/yfcai/bin/resetsc
+#!/bin/sh
+
+export SCDIR="$HOME/sc"

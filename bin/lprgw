@@ -1,1 +1,37 @@
-/Users/yfcai/bin/lprgw
+#!/usr/bin/ruby
+#
+# Printing papers by SSH, for OSX 10.9
+#
+# USAGE
+#
+#    lprgw paper1.pdf paper2.pdf
+#
+#
+# INSTALLATION
+#
+# 1. In the profile file (.bash_profile, .profile, .bashrc):
+#
+#    export gw=YOUR_USER_NAME@balaka.mathematik.uni-marburg.de
+#
+# 2. Save this file somewhere in $PATH
+#
+# 3. [Optional] Set up public-key authentication to stop typing
+#    passwords.
+
+require 'shellwords'
+
+gw = Shellwords::escape(ENV['gw'])
+
+ARGV.each do |relative_path|
+  fullpath = Shellwords::escape(File.expand_path(relative_path))
+  filename = Shellwords::escape(File.basename(relative_path))
+  lpr      = 'lpr -P jawlensky'
+  cmd = %{
+   scp #{fullpath} #{gw}:./private &&
+   ssh #{gw} #{Shellwords::escape(
+      "#{lpr} private/#{filename} && rm -f private/#{filename}"
+    )}
+  }
+  puts `#{cmd}`
+  exit 42 unless $?.success?
+end

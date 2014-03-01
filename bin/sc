@@ -1,1 +1,7 @@
-/Users/yfcai/bin/sc
+#!/bin/sh
+if [ "$*" = '' ]
+then
+  cd "$SCDIR" && ls
+else
+  cd "$SCDIR/"*$**
+fi
