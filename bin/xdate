@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby
+
+# WARNING: This script is NOT Y2064-compliant.
+
 require 'base64'
 require 'date'
 
