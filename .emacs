@@ -66,26 +66,33 @@
 (setq-default TeX-master "master")
 
 ;; load all plugins!!!
-;(add-to-list 'load-path "/Users/yfcai/etc/emacs")
+(add-to-list 'load-path (concat (getenv "HOME") "/etc/emacs"))
+
+;;
+;; Agda input method!!!
+;;
+;;(autoload 'agda-input "agda-input" "agda-input" t)
+(load-library "agda-input")
+(setq default-input-method "Agda")
 
 ;;
 ;; ace jump mode major function
 ;; 
-;(autoload
-;  'ace-jump-mode
-;  "ace-jump-mode"
-;  "Emacs quick move minor mode"
-;  t)
-;; you can select the key you prefer to
-;(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-;; 
-;; enable a more powerful jump back function from ace jump mode
-;;
-;(autoload
-;  'ace-jump-mode-pop-mark
-;  "ace-jump-mode"
-;  "Ace jump back:-)"
-;  t)
-;(eval-after-load "ace-jump-mode"
-;  '(ace-jump-mode-enable-mark-sync))
-;(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+(autoload
+  'ace-jump-mode
+  "ace-jump-mode"
+  "Emacs quick move minor mode"
+  t)
+; you can select the key you prefer to
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+; 
+; enable a more powerful jump back function from ace jump mode
+;
+(autoload
+  'ace-jump-mode-pop-mark
+  "ace-jump-mode"
+  "Ace jump back:-)"
+  t)
+(eval-after-load "ace-jump-mode"
+  '(ace-jump-mode-enable-mark-sync))
+(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)

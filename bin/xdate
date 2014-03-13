@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+require 'base64'
+require 'date'
+
+def enc(n)
+  Base64.encode64((4 * n).chr)[0]
+end
+
+today = Date.today
+
+year = today.year % 100
+month = today.month
+day = today.day
+
+puts enc(year) + enc(month) + enc(day)
