@@ -28,9 +28,8 @@
  fill-column 65
 )
 
-;; no toolbar, need bigger font, not sure how
-(if (boundp 'tool-bar-mode) (tool-bar-mode 0))
-;(set-default-font "-apple-bitstream vera sans mono-medium-r-normal--0-0-0-0-m-0-mac-roman")
+;; no toolbar
+(if tool-bar-mode (tool-bar-mode 0))
 
 ;; my own key bindings
 (global-set-key (kbd "C-=") 'fill-region)
@@ -54,8 +53,12 @@
   (flyspell-mode 1))
 
 ;; scala-mode
-;(add-to-list 'load-path "~/etc/scala-mode2")
-;(require 'scala-mode2)
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
+(unless (package-installed-p 'scala-mode2)
+  (package-refresh-contents) (package-install 'scala-mode2))
 
 ;; ocaml-mode
 ;(setq auto-mode-alist
