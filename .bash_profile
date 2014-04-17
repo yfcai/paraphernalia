@@ -5,7 +5,7 @@ export PATH="$HOME/bin:$PATH"
 
 # my helpful variables
 export dk="$HOME/Desktop"
-export gw='cai@balaka.mathematik.uni-marburg.de'
+export gw='cai@applogin.mathematik.uni-marburg.de'
 export server='yfcai@plse.mathematik.uni-marburg.de'
 
 # my helpful aliases
