@@ -23,4 +23,4 @@ alias refresh="cd / && cd -"
 # INSTALLATIONS
 export ETC="$HOME/sc/EEE.etc"
 
-export PATH="$PATH:$ETC/scala/2.10.3/bin"
+export PATH="$PATH:$ETC/scala/2.10.3/bin:$HOME/Library/Haskell/bin"
