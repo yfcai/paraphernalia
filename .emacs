@@ -29,6 +29,7 @@
 )
 
 ;; no toolbar
+;(if (boundp 'tool-bar-mode) (tool-bar-mode 0)) ;; for emacs 22.1.1
 (if tool-bar-mode (tool-bar-mode 0))
 
 ;; my own key bindings
@@ -99,3 +100,25 @@
 (eval-after-load "ace-jump-mode"
   '(ace-jump-mode-enable-mark-sync))
 (define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
+
+
+;; compile-on-save
+;; http://rtime.felk.cvut.cz/~sojka/blog/compile-on-save/
+
+(defun compile-on-save-start ()
+  (let ((buffer (compilation-find-buffer)))
+    (unless (get-buffer-process buffer)
+      (recompile))))
+
+(define-minor-mode compile-on-save-mode
+  "Minor mode to automatically call `recompile' whenever the
+current buffer is saved. When there is ongoing compilation,
+nothing happens."
+  :lighter " CoS"
+    (if compile-on-save-mode
+    (progn  (make-local-variable 'after-save-hook)
+        (add-hook 'after-save-hook 'compile-on-save-start nil t))
+      (kill-local-variable 'after-save-hook)))
