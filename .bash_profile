@@ -7,6 +7,7 @@ export PATH="$HOME/bin:$PATH"
 export dk="$HOME/Desktop"
 export gw='cai@applogin.mathematik.uni-marburg.de'
 export server='yfcai@plse.mathematik.uni-marburg.de'
+export swprak='swprak@plse.mathematik.uni-marburg.de'
 
 # my helpful aliases
 # alias cldk="rm -rf $dk/*" # too dangerous
