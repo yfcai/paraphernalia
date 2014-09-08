@@ -24,4 +24,5 @@ alias refresh="cd / && cd -"
 # INSTALLATIONS
 export ETC="$HOME/sc/EEE.etc"
 
-export PATH="$PATH:$ETC/scala/2.10.3/bin:$HOME/Library/Haskell/bin"
+#export PATH="$PATH:$ETC/scala/2.10.3/bin" # use homebrew for scaka
+export PATH="$PATH:$HOME/Library/Haskell/bin"
