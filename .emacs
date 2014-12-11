@@ -63,13 +63,6 @@
 (add-to-list 'load-path (concat (getenv "HOME") "/etc/emacs"))
 
 ;;
-;; Agda input method!!!
-;;
-;;(autoload 'agda-input "agda-input" "agda-input" t)
-(load-library "agda-input")
-(setq default-input-method "Agda")
-
-;;
 ;; ace jump mode major function
 ;; 
 (autoload
@@ -93,6 +86,15 @@
 
 (load-file (let ((coding-system-for-read 'utf-8))
                 (shell-command-to-string "agda-mode locate")))
+
+
+;;
+;; Agda input method!!!
+;;
+;;(autoload 'agda-input "agda-input" "agda-input" t)
+(load-library "agda-input")
+(setq default-input-method "Agda")
+
 
 
 ;; compile-on-save
