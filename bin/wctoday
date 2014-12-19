@@ -1,0 +1,9 @@
+#!/usr/bin/ruby
+
+# estimate how many words you wrote today
+
+if ARGV.empty?
+  exec "git diff --word-diff=porcelain 'HEAD@{yesterday}' | grep -e '^+[^+]' | wc -w"
+else
+  exec "git diff --word-diff=porcelain 'HEAD@{yesterday}' -- #{ARGV[0]} | grep -e '^+[^+]' | wc -w"
+end
