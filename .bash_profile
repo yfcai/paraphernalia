@@ -5,7 +5,7 @@ export PATH="$HOME/bin:$PATH"
 
 # my helpful variables
 export dk="$HOME/Desktop"
-export gw='caiyufei@sshgw.informatik.uni-marburg.de'
+export gw='caiyufei@sshgw.informatik.uni-tuebingen.de'
 
 # my helpful aliases
 # alias cldk="rm -rf $dk/*" # too dangerous
