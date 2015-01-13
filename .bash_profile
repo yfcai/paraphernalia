@@ -5,6 +5,7 @@ export PATH="$HOME/bin:$PATH"
 
 # my helpful variables
 export dk="$HOME/Desktop"
+export tr="$HOME/sc/AAB.tr"
 export gw='caiyufei@sshgw.informatik.uni-tuebingen.de'
 
 # my helpful aliases
