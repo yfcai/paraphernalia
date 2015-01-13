@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# OCaml revised syntax with recursive types
+
+exec ocaml -rectypes dynlink.cma camlp4r.cma $*
