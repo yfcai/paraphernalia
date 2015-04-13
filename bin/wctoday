@@ -3,7 +3,7 @@
 # estimate how many words you wrote today
 
 if ARGV.empty?
-  exec "git diff -M05 -C05 --word-diff=porcelain 'HEAD@{yesterday}' | grep -e '^+[^+]' | wc -w"
+  exec "git diff -M05 -C05 --word-diff=porcelain 'HEAD@{yesterday.23:59}' | grep -e '^+[^+]' | wc -w"
 else
-  exec "git diff -M05 -C05 --word-diff=porcelain 'HEAD@{yesterday}' -- #{ARGV[0]} | grep -e '^+[^+]' | wc -w"
+  exec "git diff -M05 -C05 --word-diff=porcelain 'HEAD@{yesterday.23:59}' -- #{ARGV[0]} | grep -e '^+[^+]' | wc -w"
 end
