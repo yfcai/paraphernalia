@@ -32,6 +32,9 @@
 ;(if (boundp 'tool-bar-mode) (tool-bar-mode 0)) ;; for emacs 22.1.1
 (if tool-bar-mode (tool-bar-mode 0))
 
+;; global linum mode
+(global-linum-mode 1)
+
 ;; my own key bindings
 (global-set-key (kbd "C-=") 'fill-region)
 (global-set-key (kbd "C-<tab>") (lambda () (interactive) (insert-char 9 1)))
@@ -96,6 +99,8 @@
 (setq default-input-method "Agda")
 
 
+;; delete markdown mode (I hate it so much)
+(delete '("\\.\\(md\\)$" . markdown-mode) auto-mode-alist)
 
 ;; compile-on-save
 ;; http://rtime.felk.cvut.cz/~sojka/blog/compile-on-save/
