@@ -1,7 +1,8 @@
-#!/bin/sh
-if [ "$*" = '' ]
-then
-  cd "$SCDIR" && ls
+#!/usr/local/bin/fish
+
+if [ "$argv" = "$HOME/bin/sc" ]
+  cd "$SCDIR"
+  ls
 else
-  cd "$($HOME/bin/sc.rb $SCDIR $*)"
-fi
+  cd (eval $HOME/bin/sc.rb $SCDIR $argv)
+end

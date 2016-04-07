@@ -1,16 +1,11 @@
-#!/bin/sh
+#!/usr/local/bin/fish
 
-if [ $# -eq 1 ]
-then
-  if [[ "$1" = /* ]]
-  then
-    export SCDIR=$1
-  else
-    export SCDIR=`ls -d "$PWD/$1"`
-  fi
-elif [ $# -eq 0 ]
-then
-  export SCDIR=$PWD
+if [ "$argv" = "$HOME/bin/setsc" ]
+  set SCDIR "$PWD"
+  echo "SCDIR = '$SCDIR'"
+else if math 1==(count $argv) > /dev/null
+  set SCDIR "$argv[1]"
+  echo "SCDIR = '$SCDIR'"
 else
- echo "Usage: setsc <base dir for sc>"
-fi
+  echo "Usage: setsc <base dir for sc>"
+end

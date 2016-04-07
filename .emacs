@@ -13,6 +13,9 @@
  '(global-visual-line-mode t)
  '(make-backup-files nil))
 
+;; proof general
+(load-file (concat (getenv "HOME") "/etc/ProofGeneral/generic/proof-site.el"))
+
 ;; no fortran. F for System F!
 (setq auto-mode-alist
       (remove (rassoc 'fortran-mode auto-mode-alist) auto-mode-alist))
@@ -42,9 +45,9 @@
 (global-set-key (kbd "C-B") 'backward-char) ; too many full-screeners
 
 ;; autofill in text mode (?)
-;(defun my-text-mode-hook ()
-;  (auto-fill-mode 1))
-;(add-hook 'text-mode-hook 'my-text-mode-hook)
+(defun my-text-mode-hook ()
+  (auto-fill-mode 1))
+(add-hook 'text-mode-hook 'my-text-mode-hook)
 
 ;; scala-mode
 (require 'package)
@@ -53,6 +56,18 @@
 (package-initialize)
 (unless (package-installed-p 'scala-mode2)
   (package-refresh-contents) (package-install 'scala-mode2))
+
+;; idris mode
+(unless (package-installed-p 'idris-mode)
+  (package-refresh-contents) (package-install 'idris-mode))
+(setq idris-load-packages '("effects"))
+
+(defun my-idris-mode-hook ()
+  (global-unset-key (kbd "RET"))
+  (local-unset-key (kbd "RET"))
+  (global-set-key (kbd "RET") 'newline))
+(add-hook 'idris-mode-hook 'my-idris-mode-hook)
+
 
 ;; ocaml-mode
 ;(setq auto-mode-alist
@@ -87,14 +102,22 @@
   '(ace-jump-mode-enable-mark-sync))
 (define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
 
+;
+; csv mode
+;
+(add-to-list 'auto-mode-alist '("\\.[Cc][Ss][Vv]\\'" . csv-mode))
+(autoload 'csv-mode "csv-mode"
+  "Major mode for editing comma-separated value files." t)
+
+;
+; Agda mode: Uncomment after you successfully installed Agda again
+;
 (load-file (let ((coding-system-for-read 'utf-8))
                 (shell-command-to-string "agda-mode locate")))
-
-
-;;
-;; Agda input method!!!
-;;
-;;(autoload 'agda-input "agda-input" "agda-input" t)
+;;;
+;;; Agda input method!!!
+;;;
+;(autoload 'agda-input "agda-input" "agda-input" t)
 (load-library "agda-input")
 (setq default-input-method "Agda")
 
@@ -119,6 +142,32 @@ nothing happens."
     (progn  (make-local-variable 'after-save-hook)
         (add-hook 'after-save-hook 'compile-on-save-start nil t))
       (kill-local-variable 'after-save-hook)))
+
+;; toggle window split between horizontal and vertical
+(defun toggle-window-split ()
+  (interactive)
+  (if (= (count-windows) 2)
+      (let* ((this-win-buffer (window-buffer))
+	     (next-win-buffer (window-buffer (next-window)))
+	     (this-win-edges (window-edges (selected-window)))
+	     (next-win-edges (window-edges (next-window)))
+	     (this-win-2nd (not (and (<= (car this-win-edges)
+					 (car next-win-edges))
+				     (<= (cadr this-win-edges)
+					 (cadr next-win-edges)))))
+	     (splitter
+	      (if (= (car this-win-edges)
+		     (car (window-edges (next-window))))
+		  'split-window-horizontally
+		'split-window-vertically)))
+	(delete-other-windows)
+	(let ((first-win (selected-window)))
+	  (funcall splitter)
+	  (if this-win-2nd (other-window 1))
+	  (set-window-buffer (selected-window) this-win-buffer)
+	  (set-window-buffer (next-window) next-win-buffer)
+	  (select-window first-win)
+	  (if this-win-2nd (other-window 1))))))
 
 
 ;; TeX-texify
